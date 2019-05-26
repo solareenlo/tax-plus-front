@@ -15,7 +15,7 @@ before_install:
   - npm install -g @angular/cli
 
 script:
-  - ng build --prod --base-href="https://solareenlo.github.io/tax-plus-front"
+  - ng build --prod --base-href="https://solareenlo.github.io/tax-plus-front/"
 
 deploy:
   provider: pages
