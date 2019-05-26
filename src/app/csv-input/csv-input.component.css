@@ -1,0 +1,8 @@
+.csv-card {
+  width: 50%;
+}
+
+.file-select-button, .file-name {
+  display: inline-block;
+  margin: 8px;
+}

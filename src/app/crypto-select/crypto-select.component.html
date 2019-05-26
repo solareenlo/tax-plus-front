@@ -1,0 +1,11 @@
+<mat-card class="crypto-card">
+  <h4>暗号資産の種類を選んでください。</h4>
+  <mat-form-field>
+    <mat-label>暗号資産</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let item of crypto" [value]="item.value">
+        {{item.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>

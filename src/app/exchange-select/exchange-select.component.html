@@ -1,0 +1,11 @@
+<mat-card class="exchange-card">
+  <h4>マイナーの種類を選んでください。</h4>
+  <mat-form-field>
+    <mat-label>マイナー</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let item of exchanges" [value]="item.value">
+        {{item.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
