@@ -1,3 +1,8 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
 .csv-card {
   width: 50%;
 }
