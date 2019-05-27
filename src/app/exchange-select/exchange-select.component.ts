@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExchangeService } from '../service/exchange.service';
 
 export interface Exchanges {
   value: string;
@@ -11,6 +12,9 @@ export interface Exchanges {
   styleUrls: ['./exchange-select.component.css']
 })
 export class ExchangeSelectComponent implements OnInit {
+  selectedValue = '';
+  public exchange: string;
+
   exchanges: Exchanges[] = [
     {value: 'antpool-0', viewValue: 'ANTPOOL'},
     {value: 'f2pool-1', viewValue: 'F2Pool'},
@@ -19,9 +23,12 @@ export class ExchangeSelectComponent implements OnInit {
     {value: 'zcoin', viewValue: 'Zcoin'}
   ];
 
-  constructor() { }
+  constructor(private exchangeService: ExchangeService) { }
 
   ngOnInit() {
   }
 
+  onSelect() {
+    this.exchangeService.onNotifySelectedExchange(this.selectedValue);
+  }
 }

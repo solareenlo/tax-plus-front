@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValueSharedService } from '../service/crypto.service';
 
 export interface Crypto {
   value: string;
@@ -11,6 +12,9 @@ export interface Crypto {
   styleUrls: ['./crypto-select.component.css']
 })
 export class CryptoSelectComponent implements OnInit {
+  selectedValue = '';
+  test: string;
+
   crypto: Crypto[] = [
     {value: 'btc-0', viewValue: 'BTC'},
     {value: 'ltc-1', viewValue: 'LTC'},
@@ -20,9 +24,14 @@ export class CryptoSelectComponent implements OnInit {
     {value: 'xzc-5', viewValue: 'XZC'}
   ];
 
-  constructor() { }
+  constructor(private valueSharedService: ValueSharedService) { }
 
   ngOnInit() {
+  }
+
+  onSelect() {
+    this.valueSharedService.crypto = this.selectedValue;
+    this.valueSharedService.onNotifySharedDataChanged(this.selectedValue);
   }
 
 }

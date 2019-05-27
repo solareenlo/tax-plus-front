@@ -2,8 +2,11 @@
   <h4>マイナーの種類を選んでください。</h4>
   <mat-form-field>
     <mat-label>マイナー</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let item of exchanges" [value]="item.value">
+    <mat-select [(ngModel)]="selectedValue" name="item">
+      <mat-option
+        *ngFor="let item of exchanges"
+        [value]="item.viewValue"
+        (click)="onSelect()">
         {{item.viewValue}}
       </mat-option>
     </mat-select>

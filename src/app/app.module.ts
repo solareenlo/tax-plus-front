@@ -33,7 +33,8 @@ import { CalculateComponent } from './calculate/calculate.component';
     MatSelectModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
