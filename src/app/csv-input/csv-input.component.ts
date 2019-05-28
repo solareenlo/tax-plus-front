@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CsvService } from '../service/csv.service';
 
 @Component({
   selector: 'app-csv-input',
@@ -18,9 +19,10 @@ export class CsvInputComponent implements OnInit {
   onChangeFileInput(): void {
     const files: { [key: string]: File } = this.fileInput.nativeElement.files;
     this.file = files[0];
+    this.csvService.onNotifyInputCsv(this.file);
   }
 
-  constructor() { }
+  constructor(private csvService: CsvService) { }
 
   ngOnInit() {
   }

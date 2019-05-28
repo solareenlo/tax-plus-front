@@ -29,8 +29,7 @@ export class CryptoSelectComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelect() {
-    this.valueSharedService.crypto = this.selectedValue;
+  onSelect(): void {
     this.valueSharedService.onNotifySharedDataChanged(this.selectedValue);
   }
 

@@ -5,10 +5,6 @@ import { Subject } from 'rxjs';
 @Injectable({providedIn: 'root'})
 
 export class ValueSharedService {
-  crypto = '';
-  exchange = '';
-  csv = '';
-
   // データの変更通知をするためのオブジェクト
   private sharedDataSource = new Subject<string>();
 

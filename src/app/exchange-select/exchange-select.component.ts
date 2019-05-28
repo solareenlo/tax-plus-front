@@ -28,7 +28,7 @@ export class ExchangeSelectComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelect() {
+  onSelect(): void {
     this.exchangeService.onNotifySelectedExchange(this.selectedValue);
   }
 }
