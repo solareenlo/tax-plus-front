@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { ValueSharedService } from '../service/crypto.service';
 import { ExchangeService } from '../service/exchange.service';
 import { CsvService } from '../service/csv.service';
+import { Post } from '../model/post.model';
+import { PostsService } from '../service/posts.service';
 
 @Component({
   selector: 'app-calculate',
@@ -17,11 +19,15 @@ export class CalculateComponent implements OnInit, OnDestroy {
   private cryptoSubscription: Subscription;
   private exchangeSubscription: Subscription;
   private csvSubscription: Subscription;
+  posts: Post[] = [];
+  private postsSub: Subscription;
 
   constructor(
     private valueSharedService: ValueSharedService,
     private exchangeService: ExchangeService,
-    private csvService: CsvService) {}
+    private csvService: CsvService,
+    private postsService: PostsService
+  ) {}
 
   ngOnInit() {
     this.cryptoSubscription = this.valueSharedService.sharedDataSource$.subscribe(msg => {
@@ -33,6 +39,11 @@ export class CalculateComponent implements OnInit, OnDestroy {
     this.csvSubscription = this.csvService.inputCsv$.subscribe(csv => {
       this.file = csv;
     });
+    this.postsService.getPosts();
+    this.postsSub = this.postsService.getPostUpdateListener()
+      .subscribe((posts: Post[]) => {
+        this.posts = posts;
+      });
   }
 
   onClick(): void {
@@ -43,5 +54,6 @@ export class CalculateComponent implements OnInit, OnDestroy {
     this.cryptoSubscription.unsubscribe();
     this.exchangeSubscription.unsubscribe();
     this.csvSubscription.unsubscribe();
+    this.postsSub.unsubscribe();
   }
 }
