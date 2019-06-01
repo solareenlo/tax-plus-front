@@ -7,7 +7,7 @@ import { CsvService } from '../service/csv.service';
   styleUrls: ['./csv-input.component.css']
 })
 export class CsvInputComponent implements OnInit {
-  @ViewChild('fileInput')
+  @ViewChild('fileInput', { static: true })
   fileInput;
 
   file: File | null = null;
