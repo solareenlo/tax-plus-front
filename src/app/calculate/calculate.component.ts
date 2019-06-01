@@ -41,11 +41,11 @@ export class CalculateComponent implements OnInit, OnDestroy {
   }
 
   onAddPost(form: NgForm): void {
-    console.log(this.crypto, this.exchange, this.file.name);
     if (form.invalid) {
       return;
     }
-    this.postsService.addPost(this.crypto, this.exchange);
+    // console.log(this.crypto, this.exchange, this.file);
+    this.postsService.addPost(this.crypto, this.exchange, this.file);
   }
 
   ngOnDestroy() {

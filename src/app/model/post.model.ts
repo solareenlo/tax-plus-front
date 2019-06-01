@@ -8,4 +8,5 @@ export interface Crypto {
   id: string;
   crypto: string;
   exchange: string;
+  file: File;
 }

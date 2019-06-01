@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { Post, Crypto } from '../model/post.model';
-
-const host = 'https://thetangle.jp';
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+    // 'Authorization': 'my-auth-token'
+  })
+};
 @Injectable({providedIn: 'root'})
 
 export class PostsService {
+  host = 'http://localhost:3001';
   private posts: Post[] = [];
   private cryptos: Crypto[] = [];
   private postsUpdated = new Subject<Post[]>();
@@ -16,7 +21,7 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   getPosts() {
-    this.http.get<{message: string, posts: Post[]}>(host)
+    this.http.get<{message: string, posts: Post[]}>(this.host)
       .subscribe((postData) => {
         this.posts = postData.posts;
         this.postsUpdated.next([...this.posts]);
@@ -27,9 +32,14 @@ export class PostsService {
     return this.postsUpdated.asObservable();
   }
 
-  addPost(crypto: string, exchange: string) {
-    const cryptos: Crypto = {id: null, crypto, exchange};
+  addPost(crypto: string, exchange: string, file: File) {
+    const name: string = file.name;
+    const post: Crypto = {id: null, crypto, exchange, file};
+    console.log(post.file.name);
     this.http
-      .post<{message: string}>(host, crypto);
+      .post<{message: string, crypto: string, exchange: string, file: File}>(this.host, post)
+      .subscribe((resData) => {
+        console.log(resData);
+      });
   }
 }
