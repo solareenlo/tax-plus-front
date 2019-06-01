@@ -1,16 +1,10 @@
-<button
-  mat-raised-button
-  color="primary"
-  (click)="onClick()">計算する</button>
+<form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onClick()">計算する</button>
+</form>
+
 <p>{{ crypto }}</p>
 <p>{{ exchange }}</p>
 <p>{{ file?.name }}</p>
-
-<mat-accordion multi="true" *ngIf="posts.length > 0">
-  <mat-expansion-panel *ngFor="let post of posts">
-    <mat-expansion-panel-header>
-      <mat-panel-title>{{ post.title }}</mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>{{ post.content }}</p>
-  </mat-expansion-panel>
-</mat-accordion>

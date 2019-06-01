@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { ValueSharedService } from '../service/crypto.service';
@@ -19,8 +20,6 @@ export class CalculateComponent implements OnInit, OnDestroy {
   private cryptoSubscription: Subscription;
   private exchangeSubscription: Subscription;
   private csvSubscription: Subscription;
-  posts: Post[] = [];
-  private postsSub: Subscription;
 
   constructor(
     private valueSharedService: ValueSharedService,
@@ -39,14 +38,13 @@ export class CalculateComponent implements OnInit, OnDestroy {
     this.csvSubscription = this.csvService.inputCsv$.subscribe(csv => {
       this.file = csv;
     });
-    this.postsService.getPosts();
-    this.postsSub = this.postsService.getPostUpdateListener()
-      .subscribe((posts: Post[]) => {
-        this.posts = posts;
-      });
   }
 
-  onClick(): void {
+  onClick(form: NgForm): void {
+    if (form.invalid) {
+      return;
+    }
+    this.postsService.addPost(this.crypto, this.exchange);
     console.log(this.crypto, this.exchange, this.file.name);
   }
 
@@ -54,6 +52,5 @@ export class CalculateComponent implements OnInit, OnDestroy {
     this.cryptoSubscription.unsubscribe();
     this.exchangeSubscription.unsubscribe();
     this.csvSubscription.unsubscribe();
-    this.postsSub.unsubscribe();
   }
 }

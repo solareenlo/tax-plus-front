@@ -17,6 +17,7 @@ import { CryptoSelectComponent } from './crypto-select/crypto-select.component';
 import { ExchangeSelectComponent } from './exchange-select/exchange-select.component';
 import { CsvInputComponent } from './csv-input/csv-input.component';
 import { CalculateComponent } from './calculate/calculate.component';
+import { PostListComponent } from './post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CalculateComponent } from './calculate/calculate.component';
     CryptoSelectComponent,
     ExchangeSelectComponent,
     CsvInputComponent,
-    CalculateComponent
+    CalculateComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
