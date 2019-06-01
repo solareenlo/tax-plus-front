@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { Post, Crypto } from '../model/post.model';
 
-const host = 'http://localhost:3001';
+const host = 'https://thetangle.jp';
 
 @Injectable({providedIn: 'root'})
 
@@ -16,7 +16,7 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   getPosts() {
-    this.http.get<{message: string, posts: Post[]}>('https://thetangle.jp')
+    this.http.get<{message: string, posts: Post[]}>(host)
       .subscribe((postData) => {
         this.posts = postData.posts;
         this.postsUpdated.next([...this.posts]);
