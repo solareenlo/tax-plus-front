@@ -13,7 +13,7 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 
 export class PostsService {
-  host = 'http://localhost:3001';
+  host = 'http://localhost:3001/api/v1';
   private posts: Post[] = [];
   private cryptos: Crypto[] = [];
   private postsUpdated = new Subject<Post[]>();
