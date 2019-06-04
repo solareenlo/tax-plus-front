@@ -32,12 +32,12 @@ export class PostsService {
     return this.postsUpdated.asObservable();
   }
 
-  addPost(crypto: string, exchange: string, file: File) {
-    const name: string = file.name;
-    const post: Crypto = {id: null, crypto, exchange, file};
-    console.log(post.file.name);
+  addPost(crypto: string, exchange: string, image: File) {
+    const name: string = image.name;
+    const post: Crypto = {id: null, crypto, exchange, image};
+    console.log(post.image.name);
     this.http
-      .post<{message: string, crypto: string, exchange: string, file: File}>(this.host, post)
+      .post<{message: string, crypto: string, exchange: string, image: File}>(this.host, post)
       .subscribe((resData) => {
         console.log(resData);
       });
